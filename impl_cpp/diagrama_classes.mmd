@@ -1,0 +1,55 @@
+classDiagram
+    class Aresta {
+        <<struct>>
+        +int origem
+        +int destino
+        +int peso
+    }
+
+    class ConjuntosDisjuntosBase {
+        <<abstract>>
+        #vector~int~ pai
+        #vector~int~ altura
+        #long acessos_memoria
+        +buscar(int vertice)* int
+        +unir(int vertice1, int vertice2)* bool
+        +ler_pai(int vertice) int
+        +escrever_pai(int vertice, int novo_pai) void
+        +ler_altura(int vertice) int
+        +incrementar_altura(int vertice) void
+        +obter_acessos_memoria() long long
+    }
+
+    class DSUIngenua {
+        +buscar(int vertice) int
+        +unir(int vertice1, int vertice2) bool
+    }
+
+    class DSURank {
+        +buscar(int vertice) int
+        +unir(int vertice1, int vertice2) bool
+    }
+
+    class DSUTarjan {
+        +buscar(int vertice) int
+        +unir(int vertice1, int vertice2) bool
+    }
+
+    class DSUTarjanOtm {
+        +buscar(int vertice) int
+        +unir(int vertice1, int vertice2) bool
+    }
+
+    class GrafoUtils {
+        <<utility>>
+        +formatar_tempo(double segundos) string
+        +processar_grafo(string arquivo, int &v, vector~Aresta~ &a) bool
+        +executar_implementacao_dsu(string nome, ConjuntosDisjuntosBase &dsu, int v, vector~Aresta~ &a) void
+    }
+
+    ConjuntosDisjuntosBase <|-- DSUIngenua : herda
+    ConjuntosDisjuntosBase <|-- DSURank : herda
+    ConjuntosDisjuntosBase <|-- DSUTarjan : herda
+    ConjuntosDisjuntosBase <|-- DSUTarjanOtm : herda
+    GrafoUtils ..> ConjuntosDisjuntosBase : utiliza
+    GrafoUtils ..> Aresta : utiliza
