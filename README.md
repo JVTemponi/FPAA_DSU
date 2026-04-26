@@ -30,3 +30,4 @@ g++ src/*.cpp -I include -o build/dsu_exec
 ./build/dsu_exec
 ```
 
+![alt text](Docs/Hist_exec_tabela/tabela_compativa.png)
